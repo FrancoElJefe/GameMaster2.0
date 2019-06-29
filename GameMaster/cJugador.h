@@ -25,17 +25,16 @@ public:
 
 	
 	void setTropaEnPais(void);
-
 	void agregarTropas(cTropa * ptr, int n);
+	int AgregarPais(cPais *ptr);
+	cPais* quitarPais(string pais);
 		
 	cPais* MenuAtacarPais();
 	
-	int AgregarPais(cPais *ptr);
-	cPais* quitarPais(string pais);
-
 	string getNombre() { return nombre; }
 	int getNumeroDePaises() { return listaPropiaPaises->getCA(); }
 
+	void ImprimirMapa();
 	void listarSusPaises(); // funcion de prueba
 	void listarTropas(); //funcion de prueba
 	void setTropasEnPaisesPrueba(int caballeros, int arqueros, int magos);//funcion de prueba

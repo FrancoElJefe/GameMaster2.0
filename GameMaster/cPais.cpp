@@ -90,6 +90,7 @@ string cPais::AtacarOtroPais(string nomb)
 				cout << endl << "Pais a Atacar: ";
 				cin.clear();
 				cin >> opcion;
+				if (opcion == 0)getchar();				
 
 				if (opcion - 1 <= vecinos->getCA() && opcion != 0) 
 				estado = EPaisParaAtacar;
@@ -140,6 +141,8 @@ string cPais::AtacarOtroPais(string nomb)
 			cin.clear();
 			cin >> clase_tuya;
 
+			if (clase_tuya == 0)getchar();
+
 			if (clase_tuya != 0 && clase_tuya <= TropasEnPais->getCA())
 			{
 				cTropaCaballero * caballero = dynamic_cast<cTropaCaballero*>(TropasEnPais->getItem(clase_tuya - 1));
@@ -180,7 +183,10 @@ string cPais::AtacarOtroPais(string nomb)
 				PaisParaAtacar->PrintTropas();
 
 				cout << endl << "Elija la tropa la cual quiere atacar:";
+				cin.clear();
 				cin >> clase_slc;
+
+				if (clase_slc == 0)getchar();
 
 				if (clase_slc != 0 && clase_slc <= PaisParaAtacar->getCantidadDeTropas())
 				{					
