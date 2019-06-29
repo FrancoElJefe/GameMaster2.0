@@ -196,6 +196,9 @@ string cPais::AtacarOtroPais(string nomb)
 					{
 						if (rand()%5 == 2) //los arqueros realizan un segundo ataque con un aumento del 50%
 						{
+							SetConsoleTextAttribute(consoleHandle, EVENT_SYSTEM_FOREGROUND);
+							cout << endl << "*****Los Arqueros efectuan un segundo ataque potenciado al 50%!!!*****" << endl;
+							SetConsoleTextAttribute(consoleHandle, 7);
 							fin = PaisParaAtacar->Atacado(clase_slc - 1, 3 * TropaTuya->Ataque()*0.50, TropaTuya->getNombre());
 						}
 					}
@@ -254,7 +257,7 @@ string cPais::AtacarOtroPais(string nomb)
 
 			case MagoContraCaballero:
 
-				if (PaisParaAtacar->getCantTMago() != 0)
+				if (PaisParaAtacar->getCantTcaballero() != 0)
 				{
 					//titulo(PaisParaAtacar, estado, nombre, jugador, consoleHandle);
 
@@ -529,15 +532,17 @@ int cPais::ContrataqueDeCaballeros(cTropa * ptr, int Ntropa)
 	 else
 	 {
 		 return(0);
-	 }
-	
+	 }	
 
 }
 
 int cPais::getCantTcaballero()
 {
-	int cont = 0;
-	for (int i = 0; i < TropasEnPais->getCA(); i++)
+	int cont = 0, N = 0;
+
+	N = TropasEnPais->getCA();
+
+	for (int i = 0; i < N; i++)
 	{
 		cTropaCaballero * tropa = dynamic_cast<cTropaCaballero*>(TropasEnPais->getItem(i));
 		if (tropa != NULL)
@@ -551,8 +556,11 @@ int cPais::getCantTcaballero()
 
 int cPais::getCantTMago()
 {
-	int cont = 0;
-	for (int i = 0; i < TropasEnPais->getCA(); i++)
+	int cont = 0, N = 0;
+
+	N = TropasEnPais->getCA();
+
+	for (int i = 0; i < N; i++)
 	{
 		cTropaMago * tropa = dynamic_cast<cTropaMago*>(TropasEnPais->getItem(i));
 		if (tropa != NULL)
@@ -566,8 +574,11 @@ int cPais::getCantTMago()
 
 int cPais::getCantTarquro()
 {
-	int cont = 0;
-	for (int i = 0; i < TropasEnPais->getCA(); i++)
+	int cont = 0, N = 0;
+
+	N = TropasEnPais->getCA();
+
+	for (int i = 0; i < N; i++)
 	{
 		cTropaArquero * tropa = dynamic_cast<cTropaArquero*>(TropasEnPais->getItem(i));
 		if (tropa != NULL)

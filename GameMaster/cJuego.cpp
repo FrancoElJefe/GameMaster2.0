@@ -125,14 +125,44 @@ void cJuego::EleccionDeUnidades(cJugador * jugadorX)
 		cout << jugadorX->getNombre() << endl;
 		cout << "---------" << endl << endl;
 		cout << "Eleccion de Unidades: (MaxUnidades 50) // Unidades ACTUALES: " << MaxUnidades << endl << endl;
-		cout << "1) 10-20 unidades si son caballeros" << endl << "2) 15 - 30 si son arqueros" << endl << "3) 20 - 40 si son magos" << endl << endl;
-		cout << "Caballeros : " << caballeros << endl;
-		cout << "Arqueros : " << arqueros << endl;
-		cout << "Magos : " << magos << endl << endl;
+		cout << "1) 10-20 unidades si son";
+
+		SetConsoleTextAttribute(consoleHandle, FOREGROUND_BLUE);
+		cout << " caballeros";
+		SetConsoleTextAttribute(consoleHandle, 7);
+
+		cout << endl << "2) 15 - 30 unidades si son";
+		SetConsoleTextAttribute(consoleHandle, FOREGROUND_GREEN);
+		cout << " arqueros";
+		SetConsoleTextAttribute(consoleHandle, 7);
+
+		cout << endl << "3) 20 - 40 unidades si son";
+		SetConsoleTextAttribute(consoleHandle, FOREGROUND_RED);
+		cout << " magos";
+		SetConsoleTextAttribute(consoleHandle, 7);
+
+		cout << endl << endl;
+
+		SetConsoleTextAttribute(consoleHandle, FOREGROUND_BLUE);
+		cout << "Caballeros ";
+		SetConsoleTextAttribute(consoleHandle, 7);
+		cout << ": " << caballeros << endl;
+
+		SetConsoleTextAttribute(consoleHandle, FOREGROUND_GREEN);
+		cout << "Arqueros ";
+		SetConsoleTextAttribute(consoleHandle, 7);
+		cout << ": " << arqueros << endl;
+
+		SetConsoleTextAttribute(consoleHandle, FOREGROUND_RED);
+		cout << "Magos ";
+		SetConsoleTextAttribute(consoleHandle, 7);
+		cout << ": " << magos << endl << endl;
 
 		cout << "Opcion: ";
-
+		cin.clear();
 		cin >> opcion;
+		if (opcion == 0)
+			getchar();
 
 		if (opcion == 1)
 		{
@@ -144,17 +174,27 @@ void cJuego::EleccionDeUnidades(cJugador * jugadorX)
 				{
 					suma = 0;
 					cout << "Cantidad de Caballeros: ";
+					cin.clear();
 					cin >> suma;
+					if (suma == 0)getchar();
+
 					suma = suma + aux;
 					sobrecarga = MaxUnidades + suma - aux;
 					if (sobrecarga > 50)suma = 30;
+
 				} while (suma > 20);
-				MaxUnidades = MaxUnidades + suma - aux;
-				caballeros = caballeros + suma - aux;
+
+				if (suma > 0)
+				{
+					MaxUnidades = MaxUnidades + suma - aux;
+					caballeros = caballeros + suma - aux;
+				}
+
 			}
 			else
 			{
 				cout << "Maxima unidades de Caballeros" << endl;
+				getchar();
 			}
 
 		}
@@ -167,36 +207,58 @@ void cJuego::EleccionDeUnidades(cJugador * jugadorX)
 				{
 					suma = 0;
 					cout << "Cantidad de Arqueros: ";
+					cin.clear();
 					cin >> suma;
+					if (suma == 0)getchar();
 					suma = suma + aux;
 					sobrecarga = MaxUnidades + suma - aux;
 					if (sobrecarga > 50)suma = 40;
 				} while (suma > 30);
 
-				MaxUnidades = MaxUnidades + suma - aux;
-				arqueros = arqueros + suma - aux;
+				if (suma > 0)
+				{
+					MaxUnidades = MaxUnidades + suma - aux;
+					arqueros = arqueros + suma - aux;
+				}
+
 			}
 			else
 			{
 				cout << "Maxima unidades de Arqueros" << endl;
+				getchar();
 			}
 
 		}
-		else if (opcion == 3 && magos != 40)
+		else if (opcion == 3)
 		{
-			aux = magos;
-			do
+			if (magos != 40)
 			{
-				suma = 0;
-				cout << "Cantidad de Magos: ";
-				cin >> suma;
-				suma = suma + aux;
-				sobrecarga = MaxUnidades + suma - aux;
-				if (sobrecarga > 50)suma = 70;
+				aux = magos;
+				do
+				{
+					suma = 0;
+					cout << "Cantidad de Magos: ";
+					cin.clear();
+					cin >> suma;
+					if (suma == 0)getchar();
+					suma = suma + aux;
+					sobrecarga = MaxUnidades + suma - aux;
+					if (sobrecarga > 50)suma = 70;
 
-			} while (suma > 40);
-			MaxUnidades = MaxUnidades + suma - aux;
-			magos = magos + suma - aux;
+				} while (suma > 40);
+
+				if (suma > 0)
+				{
+					MaxUnidades = MaxUnidades + suma - aux;
+					magos = magos + suma - aux;
+				}
+			}
+			else
+			{
+				cout << "Maxima unidades de Magos" << endl;
+				getchar();
+			}
+
 		}
 
 		system("cls");
@@ -206,7 +268,19 @@ void cJuego::EleccionDeUnidades(cJugador * jugadorX)
 			if (magos == 0 || arqueros == 0 || caballeros == 0)
 			{
 				system("cls");
-				cout << "Se debe tener 10 tropas, reingrese" << endl << endl;
+				cout << "Se debe tener unidades de las tres clases, Reingrese." << endl << endl;
+				NrTropa = 0;
+				caballeros = 0;
+				arqueros = 0;
+				magos = 0;
+				MaxUnidades = 0;
+				system("pause");
+				system("cls");
+			}
+			else if (magos < 20 || arqueros < 15 || caballeros < 10)
+			{
+				system("cls");
+				cout << "Se debe tener por lo menos:" << endl << "-10 unidades de caballeros" << endl << "-15 unidades de arqueros" << endl << "-20 unidades de mago" << endl << "Reingrese" << endl << endl;
 				NrTropa = 0;
 				caballeros = 0;
 				arqueros = 0;
@@ -349,7 +423,7 @@ void cJuego::ModoDeJuego(void)
 
 void cJuego::AgruparUnidadesEnTropas(cJugador * jugadorX, int Tcaballeros, int Tarqueros, int Tmagos, int caballerox, int arquerox, int magox)
 {
-	int check = 0, numero = 0, Tropas[10] = {0}, MaxUnidades = 0, aux = 0, opcion= 0;
+	int numero = 0, Tropas[10] = {0}, MaxUnidades = 0, aux = 0, opcion= 0;
 
 	MaxUnidades = caballerox;
 	aux = arquerox;
@@ -370,29 +444,46 @@ void cJuego::AgruparUnidadesEnTropas(cJugador * jugadorX, int Tcaballeros, int T
 			cout << jugadorX->getNombre() << endl;
 			cout << "---------" << endl << endl;
 
-			cout << "Caballeros : " << caballerox << endl;
-			cout << "Arqueros : " << arquerox << endl;
-			cout << "Magos : " << magox << endl << endl;
+			SetConsoleTextAttribute(consoleHandle, FOREGROUND_BLUE);
+			cout << "Caballeros";
+			SetConsoleTextAttribute(consoleHandle, 7);
+			cout << ": " << caballerox << endl;
+			SetConsoleTextAttribute(consoleHandle, FOREGROUND_GREEN);
+			cout << "Arqueros";
+			SetConsoleTextAttribute(consoleHandle, 7);
+			cout << ": " << arquerox << endl;
+			SetConsoleTextAttribute(consoleHandle, FOREGROUND_RED);
+			cout << "Magos";
+			SetConsoleTextAttribute(consoleHandle, 7);
+			cout << ": " << magox << endl << endl;
 
 			if (caballerox != 0)
 			{
 				do
 				{
-					cout << "Caballeros: " << endl;
+					numero = 0;
+					SetConsoleTextAttribute(consoleHandle, FOREGROUND_BLUE);
+					cout << "Caballeros";
+					SetConsoleTextAttribute(consoleHandle, 7);
+					cout << ": " << endl;
 					cout << "Tropa Nr " << i + 1 << ":";
+					cin.clear();
 					cin >> numero;
 					if (numero == 0) {
 						getchar();
+
+					}
+					else if (numero != 0 && numero <= caballerox)
+					{
+						Tropas[i] = numero;
+						NrTropa++;
 					}
 					else
 					{
-						Tropas[i] = numero;
+						if (caballerox - Tropas[i] < 0)Tropas[i] = -1;
 					}
 
-					if (caballerox - Tropas[i] < 0)Tropas[i] = -1;
-
-				} while (Tropas[i] <= 0);
-				NrTropa++;
+				} while (Tropas[i] <= 0);				
 				caballerox = caballerox - Tropas[i];
 				Tcaballeros++;
 			}
@@ -400,21 +491,28 @@ void cJuego::AgruparUnidadesEnTropas(cJugador * jugadorX, int Tcaballeros, int T
 			{
 				do
 				{
-					cout << "Arqueros: " << endl;
+					numero = 0;
+					SetConsoleTextAttribute(consoleHandle, FOREGROUND_GREEN);
+					cout << "Arqueros";
+					SetConsoleTextAttribute(consoleHandle, 7);
+					cout << ": " << endl;
 					cout << "Tropa Nr " << i + 1 << ":";
+					cin.clear();
 					cin >> numero;
 					if (numero == 0) {
 						getchar();
 					}
-					else
+					else if (numero != 0 && numero <= arquerox)
 					{
 						Tropas[i] = numero;
+						NrTropa++;
+					}
+					else
+					{
+						if (arquerox - Tropas[i] < 0)Tropas[i] = -1;
 					}
 
-					if (arquerox - Tropas[i] < 0)Tropas[i] = -1;
-
 				} while (Tropas[i] <= 0);
-				NrTropa++;
 				Tarqueros++;
 				arquerox = arquerox - Tropas[i];
 			}
@@ -422,41 +520,43 @@ void cJuego::AgruparUnidadesEnTropas(cJugador * jugadorX, int Tcaballeros, int T
 			{
 				do
 				{
-					cout << "Magos: " << endl;
+					numero = 0;
+					SetConsoleTextAttribute(consoleHandle, FOREGROUND_RED);
+					cout << "Magos";
+					SetConsoleTextAttribute(consoleHandle, 7);
+					cout << ": " << endl;
 					cout << "Tropa Nr " << i + 1 << ":";
+					cin.clear();
 					cin >> numero;
 					if (numero == 0) {
 						getchar();
 					}
-					else
+					else if (numero != 0 && numero <= magox)
 					{
 						Tropas[i] = numero;
+						NrTropa++;
 					}
-
-					if (magox - Tropas[i] < 0) {
-						Tropas[i] = -1;
+					else
+					{
+						if (magox - Tropas[i] < 0)Tropas[i] = -1;
 					}
-
 				} while (Tropas[i] <= 0);
-				NrTropa++;
 				Tmagos++;
 				magox = magox - Tropas[i];
 			}
 
-			check = check + Tropas[i];
 			system("cls");
 
 		}//FOR
 
 
-		if (check != 50)
+		if (NrTropa != 10)
 		{
 			cout << endl << endl;
 			SetConsoleTextAttribute(consoleHandle, FSCTL_GET_INTEGRITY_INFORMATION);
 			cout << "Se debe tener 10 tropas, reingrese";
 			SetConsoleTextAttribute(consoleHandle, 7);
 			cout << endl << endl;
-			check = 0;
 			Tcaballeros = 0;
 			Tarqueros = 0;
 			NrTropa = 0;
@@ -465,7 +565,7 @@ void cJuego::AgruparUnidadesEnTropas(cJugador * jugadorX, int Tcaballeros, int T
 			system("cls");
 		}
 
-	} while (check != 50);
+	} while (NrTropa != 10);
 
 	if (jugadorX->getNombre() == "Jugador 1")
 	{
@@ -490,6 +590,8 @@ void cJuego::AgruparUnidadesEnTropas(cJugador * jugadorX, int Tcaballeros, int T
 	}
 
 	system("cls");
+
+
 
 }
 
@@ -599,14 +701,46 @@ void cJuego::FaseDeAtaque()
 
 		if (pais != NULL)
 		{
-			nombrePais = pais->AtacarOtroPais(Jugador1->getNombre());
+			if (pais->getCodigo() != "PasarRonda")
+			{
+				nombrePais = pais->AtacarOtroPais(Jugador1->getNombre());
+				if (nombrePais == "atras")
+				{
+					i--;
+				}
+				else if (nombrePais != "0")
+				{
+					Jugador1->AgregarPais(America->BuscarPais(nombrePais));
+				}
+			}
+			else
+			{
+				delete pais;
+			}
+
+		}
+		else
+		{
+			i--;
+		}
+
+
+	}
+
+	for (int i = 0; i < 3; i++)
+	{
+		pais = Jugador2->MenuAtacarPais();
+
+		if (pais != NULL)
+		{
+			nombrePais = pais->AtacarOtroPais(Jugador2->getNombre());
 			if (nombrePais == "atras")
 			{
 				i--;
 			}
 			else if (nombrePais != "0")
 			{
-				Jugador1->AgregarPais(America->BuscarPais(nombrePais));
+				Jugador2->AgregarPais(America->BuscarPais(nombrePais));
 			}
 
 		}

@@ -37,7 +37,12 @@ void cJugador::setTropaEnPais(void)
 	do
 	{
 		system("cls");
-		cout << "\t\tDISTRIBUYE LAS TROPAS EN TUS PAISES" << endl << endl;
+
+		ImprimirMapa();
+
+		cout << "\t\t***********************************" << endl;
+		cout << "\t\tDISTRIBUYE LAS TROPAS EN TUS PAISES" << endl;
+		cout << "\t\t***********************************" << endl << endl;
 		cout << "---------" << endl;
 		cout << nombre << endl;
 		cout << "---------" << endl << endl;
@@ -130,9 +135,10 @@ cPais * cJugador::MenuAtacarPais()
 	if (opcion == 0)
 	getchar();
 
-	if (opcion > listaPropiaPaises->getCA())
+	if (opcion-1 > listaPropiaPaises->getCA())//pasas de ronda
 	{
-		return(NULL);
+		cPais * pasar = new cPais("PasarRonda");
+		return(pasar);
 
 	}else if (opcion-1 < listaPropiaPaises->getCA() && opcion != 0)
 	{
