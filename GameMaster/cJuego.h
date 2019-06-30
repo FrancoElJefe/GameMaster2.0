@@ -45,6 +45,8 @@ class cJuego
 	void ModoDeJuego(void);
 	void AgregarTropasEnPais();
 	void ReglasDelJuego(void);
+	void cambio_de_ronda();
+	void ImprimirMapa(void);
 
 public:
 	cJuego();
@@ -53,11 +55,13 @@ public:
 			
 	void inicioPrueba(void);
 
-	void FaseDeAtaque();
-	void cambio_de_ronda();
-	void Resultados();
+	void FaseDeAsignacion();
 
-	void ImprimirMapa(void);
+	void FaseDeAtaque();
+
+	void FaseDeMovimiento();
+	
+	void Resultados();	
 
 	~cJuego();
 };

@@ -12,9 +12,13 @@ int main(void) {
 
 	GameMaster->inicioPrueba();
 
+	GameMaster->FaseDeAsignacion();
+
 	GameMaster->FaseDeAtaque();
 	
 	GameMaster
+
+	GameMaster->Resultados();
 	
 	delete GameMaster;
 	return 0;

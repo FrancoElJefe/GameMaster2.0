@@ -199,6 +199,42 @@ int cJugador::AgregarPais(cPais * ptr)
 }
 
 
+void cJugador::MenuFaseDeMovimiento()
+{
+	int opcion = 0, Check = 0;
+	cPais * pais = NULL;
+
+	do
+	{
+		system("cls");
+
+		ImprimirMapa();
+
+		cout << "\t\t****************************************************" << endl;
+		cout << "\t\tFASE DE MOVIMIENTO: reorganice las tropas a su gusto" << endl;
+		cout << "\t\t****************************************************" << endl << endl;
+		cout << "---------" << endl;
+		cout << nombre << endl;
+		cout << "---------" << endl << endl;
+
+		cout << "-Selecciona el pais el cual quiere mover alguna tropa-" << endl;
+		cout << "Pais: ";
+		cin.clear();
+		cin >> opcion;
+		if (opcion == 0)getchar();
+
+		if (opcion > 0 && opcion-1 <= listaPropiaPaises->getCA())
+		{
+			pais = listaPropiaPaises->getItem(opcion - 1);
+
+			Check = pais->MoverTropa();
+
+		}
+
+	} while (Check != 1);
+
+}
+
 void cJugador::ImprimirMapa()
 {
 	cPais * pais = NULL;

@@ -370,8 +370,7 @@ void cJuego::Inicio(void)
 
 	EleccionDeUnidades(Jugador1);
 	EleccionDeUnidades(Jugador2);
-
-	AgregarTropasEnPais();
+		
 }
 
 void cJuego::ModoDeJuego(void)
@@ -786,6 +785,11 @@ void cJuego::inicioPrueba(void)
 	system("cls");
 }
 
+void cJuego::FaseDeAsignacion()
+{
+	AgregarTropasEnPais();
+}
+
 void cJuego::FaseDeAtaque()
 {
 
@@ -856,6 +860,13 @@ void cJuego::FaseDeAtaque()
 
 	}
 	   	  
+}
+
+void cJuego::FaseDeMovimiento()
+{
+	//***********el jugador puede reorganizar sus tropas**************/
+
+
 }
 
 void cJuego::cambio_de_ronda()

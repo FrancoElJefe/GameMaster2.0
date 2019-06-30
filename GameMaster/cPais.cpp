@@ -44,6 +44,32 @@ void cPais::setJugador(string jug)
 	}
 }
 
+int cPais::MoverTropa()
+{
+	int cVecinos = 0;
+
+	system("cls");
+
+	ImprimirMapa();
+
+	cout << "Paises limitrofes suyos: " << endl << endl;
+	cVecinos = vecinos->ListarParaAtacar(nombre);//hay que hacer una nueva funcion en la lista por la cual te muestre los paises vecinos tuyos
+												//y que  muestre el nombre y las tropas que tiene.
+	if (cVecinos == 0)
+	{
+		SetConsoleTextAttribute(consoleHandle, FSCTL_GET_INTEGRITY_INFORMATION);
+		cout << "***No tiene paises vecinos enemigos***" << endl << endl;
+		SetConsoleTextAttribute(consoleHandle, 7);
+
+		system("Pause");
+		return(0);
+	}
+
+
+
+	
+}
+
 string cPais::AtacarOtroPais(string nomb)
 {
 	int opcion = 0, OpcionTropaTuya = 0, fin = 0, sinTROPA = 0, sinTROPAmia = 0, Otropas = 0, estado = 0, i = 1, cVecinos = 0, eliminar = 0;

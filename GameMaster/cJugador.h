@@ -33,6 +33,7 @@ public:
 	
 	string getNombre() { return nombre; }
 	int getNumeroDePaises() { return listaPropiaPaises->getCA(); }
+	void MenuFaseDeMovimiento();
 
 	void ImprimirMapa();
 	void listarSusPaises(); // funcion de prueba

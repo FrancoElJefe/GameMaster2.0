@@ -36,6 +36,8 @@ public:
 
 	void setJugador(string jug);
 
+	int MoverTropa();
+
 	string AtacarOtroPais(string nomb); //Yo Ataco
 	int Atacado(int ntropa, int dano, string claseTAtacante);  //Recibo Ataque
 	int AtacadoPorMagos(string Natacante, int dano);
