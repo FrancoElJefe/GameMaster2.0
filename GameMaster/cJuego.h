@@ -44,6 +44,7 @@ class cJuego
 	void AsignarPaisesAJugadores();
 	void ModoDeJuego(void);
 	void AgregarTropasEnPais();
+	void ReglasDelJuego(void);
 
 public:
 	cJuego();

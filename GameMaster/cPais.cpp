@@ -15,7 +15,10 @@ cPais::cPais(string nomb) : nombre(nomb)
 	vecinos = new cLista<cPais>();
 	TropasEnPais = new cLista<cTropa>;
 	jugador = 0;
-	listaPaises->AgregarItem(this);
+	if (nombre != "PasarRonda")
+	{
+		listaPaises->AgregarItem(this);
+	}	
 	srand(time(NULL));//inicializo los numeros random
 }
 
@@ -309,15 +312,21 @@ string cPais::AtacarOtroPais(string nomb)
 					TropasEnPais->Listar();
 
 					cout << endl << "seleccione la Tropa: ";
+					cin.clear();
 					cin >> OpcionTropaTuya;
 					
-					PaisParaAtacar->AgregarTropaPais(TropasEnPais->getItem(OpcionTropaTuya - 1));
-					TropasEnPais->QuitarenPos(OpcionTropaTuya - 1);
+					if (OpcionTropaTuya == 0)getchar();
 
-					system("pause");
+					if (OpcionTropaTuya <= TropasEnPais->getCA())
+					{
+						PaisParaAtacar->AgregarTropaPais(TropasEnPais->getItem(OpcionTropaTuya - 1));
+						TropasEnPais->QuitarenPos(OpcionTropaTuya - 1);
 
-					return(PaisParaAtacar->getCodigo());
-					
+						system("pause");
+
+						return(PaisParaAtacar->getCodigo());
+					}
+										
 				}
 				else
 				{
@@ -689,11 +698,6 @@ void cPais::PrintNombre()
 	cout << nombre << endl;
 }
 
-cPais::~cPais()
-{
-	delete TropasEnPais;
-}
-
 
 void cPais::titulo(cPais * paisParaATACAR, int estado, string nombre, int jugador, HANDLE consoleHandle) {
 
@@ -727,5 +731,40 @@ void cPais::titulo(cPais * paisParaATACAR, int estado, string nombre, int jugado
 	}
 	SetConsoleTextAttribute(consoleHandle, 7);
 
+
+}
+
+
+cPais::~cPais()
+{
+	if (vecinos != NULL)
+	{
+		int n = vecinos->getCA();
+		for (int i = 0; i < n; i++)
+		{
+			vecinos->QuitarenPos(0);
+		}
+		delete vecinos;
+	}
+
+
+	if (TropasEnPais != NULL)
+	{
+		delete TropasEnPais;
+	}
+
+	if (listaPaises->getCA() == 1)
+	{
+		listaPaises->Quitar(nombre);
+		delete listaPaises;
+	}
+	else
+	{
+		if (nombre != "PasarRonda")
+		{
+			listaPaises->Quitar(nombre);
+		}
+
+	}
 
 }

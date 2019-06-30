@@ -74,10 +74,13 @@ void cJugador::setTropaEnPais(void)
 					cout << "Elija la tropa que desee: ";
 					cin.clear();
 					cin >> opc2;
+					if (opc2 == 0)getchar();
 
-					pais->AgregarTropaPais(listaDeTropas->QuitarenPos(opc2 - 1));
-					opc = 1;
-			
+					if (opc2 > 0 && opc2 <= pais->getCantidadDeTropas())
+					{
+						pais->AgregarTropaPais(listaDeTropas->QuitarenPos(opc2 - 1));
+						opc = 1;
+					}			
 
 				} while (opc != 1);
 
@@ -135,10 +138,10 @@ cPais * cJugador::MenuAtacarPais()
 	if (opcion == 0)
 	getchar();
 
-	if (opcion-1 > listaPropiaPaises->getCA())//pasas de ronda
+	if (opcion > listaPropiaPaises->getCA())//pasas de ronda
 	{
-		cPais * pasar = new cPais("PasarRonda");
-		return(pasar);
+		pais = new cPais("PasarRonda");
+		return(pais);
 
 	}else if (opcion-1 < listaPropiaPaises->getCA() && opcion != 0)
 	{

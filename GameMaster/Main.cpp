@@ -10,10 +10,11 @@ int main(void) {
 		
 	cJuego * GameMaster = new cJuego;
 
-	GameMaster->Inicio();
+	GameMaster->inicioPrueba();
 
 	GameMaster->FaseDeAtaque();
-		
+	
+	GameMaster
 	
 	delete GameMaster;
 	return 0;

@@ -12,9 +12,11 @@ using namespace std;
 class cTropa
 {
 
+
 public:
 
 	cTropa();
+	string getCodigo() { return "tropa"; }
 
 	virtual void AgregarUnidades(int n) = 0;
 
