@@ -34,11 +34,13 @@ public:
 	void Listar();
 	void ListarV();
 	int ListarParaAtacar(string nombre);
+	int ListarVecinosTuyos(string nombre);
 
 	tipodato* AtacarVecino(string nombre, int N);
 
 	tipodato* BuscarItem(string codigo);
 	tipodato* getItem(unsigned int pos);
+	tipodato* getVecinoTuyo(string nombre, int pos);
 
 	unsigned int getItemPos(string codigo);
 
@@ -136,6 +138,35 @@ inline int cLista<tipodato>::ListarParaAtacar(string nombre)
 
 
 }
+
+template<class tipodato>
+inline int cLista<tipodato>::ListarVecinosTuyos(string nombre)
+{
+	int jugador = 0, contador = 0;
+
+	if (nombre == "Jugador 1")
+	{
+		jugador = 1;
+	}
+	else
+	{
+		jugador = 2;
+	}
+
+	for (unsigned int i = 0; i < CA; i++)
+	{
+		if (jugador == vector[i]->getNjugador())
+		{
+			cout << contador + 1 << ") ";
+			vector[i]->PrintPaisConTropas();// imprimir pais  veciono con sus tropas
+			contador++;
+		}
+
+	}
+
+	return contador;
+}
+
 template<class tipodato>
 inline tipodato * cLista<tipodato>::AtacarVecino(string nombre , int N)
 {
@@ -269,6 +300,36 @@ tipodato * cLista<tipodato>::getItem(unsigned int pos)
 	if (pos < CA)
 		return vector[pos];
 	else return NULL;
+}
+
+template<class tipodato>
+inline tipodato * cLista<tipodato>::getVecinoTuyo(string nombre, int pos)
+{
+	int jugador = 0, contador = 0;
+
+	if (nombre == "Jugador 1")
+	{
+		jugador = 1;
+	}
+	else
+	{
+		jugador = 2;
+	}
+
+	for (unsigned int i = 0; i < CA; i++)
+	{
+		if (jugador == vector[i]->getNjugador())
+		{			
+			if (contador == pos)
+			{
+				return vector[i];
+			}
+			contador++;
+		}
+
+	}
+
+	
 }
 
 template<class tipodato>

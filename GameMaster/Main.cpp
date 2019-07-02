@@ -12,11 +12,11 @@ int main(void) {
 
 	GameMaster->inicioPrueba();
 
-	GameMaster->FaseDeAsignacion();
+	//GameMaster->FaseDeAsignacion();
 
-	GameMaster->FaseDeAtaque();
+	//GameMaster->FaseDeAtaque();
 	
-	GameMaster
+	GameMaster->FaseDeMovimiento();
 
 	GameMaster->Resultados();
 	

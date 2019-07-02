@@ -862,11 +862,11 @@ void cJuego::FaseDeAtaque()
 	   	  
 }
 
-void cJuego::FaseDeMovimiento()
-{
-	//***********el jugador puede reorganizar sus tropas**************/
+void cJuego::FaseDeMovimiento()//***********el jugador puede reorganizar sus tropas**************/
+{	
+	Jugador1->MenuFaseDeMovimiento();
 
-
+	Jugador2->MenuFaseDeMovimiento();
 }
 
 void cJuego::cambio_de_ronda()

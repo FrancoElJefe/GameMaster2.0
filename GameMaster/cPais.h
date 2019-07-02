@@ -36,7 +36,7 @@ public:
 
 	void setJugador(string jug);
 
-	int MoverTropa();
+	void MoverTropa(string jugador);
 
 	string AtacarOtroPais(string nomb); //Yo Ataco
 	int Atacado(int ntropa, int dano, string claseTAtacante);  //Recibo Ataque
@@ -54,6 +54,7 @@ public:
 	void PrintTropas();//funcion de prueba
 	void printTodos();//funcion de prueba
 		
+	void PrintPaisConTropas(void);
 	void ImprimirMapa(void);
 	void PrintNombre();
 	void titulo(cPais * paisParaATACAR, int estado, string nombre, int jugador, HANDLE consoleHandle);

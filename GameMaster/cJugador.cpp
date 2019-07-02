@@ -217,21 +217,34 @@ void cJugador::MenuFaseDeMovimiento()
 		cout << nombre << endl;
 		cout << "---------" << endl << endl;
 
+		listaPropiaPaises->ListarV();
+
 		cout << "-Selecciona el pais el cual quiere mover alguna tropa-" << endl;
 		cout << "Pais: ";
 		cin.clear();
 		cin >> opcion;
 		if (opcion == 0)getchar();
 
-		if (opcion > 0 && opcion-1 <= listaPropiaPaises->getCA())
+		if (opcion > 0 && opcion <= listaPropiaPaises->getCA())
 		{
 			pais = listaPropiaPaises->getItem(opcion - 1);
 
-			Check = pais->MoverTropa();
+			if (pais->getCantidadDeTropas() >= 2)
+			{
+				pais->MoverTropa(nombre);
+			}
+			else
+			{
+				SetConsoleTextAttribute(consoleHandle, FSCTL_GET_INTEGRITY_INFORMATION);
+				cout << "***Para pasar tropas se debe tener por lo menos dos o mas en el territorio***" << endl << endl;
+				SetConsoleTextAttribute(consoleHandle, 7);
+
+				system("Pause");
+			}			
 
 		}
 
-	} while (Check != 1);
+	} while (opcion != 0);
 
 }
 

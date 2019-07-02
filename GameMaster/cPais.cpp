@@ -44,17 +44,19 @@ void cPais::setJugador(string jug)
 	}
 }
 
-int cPais::MoverTropa()
+void cPais::MoverTropa(string jugador)
 {
-	int cVecinos = 0;
+	int cVecinos = 0;//cantidad de vecinos
+	int paisT = 0, TropaApasar=0;
+	cPais * pais = NULL;
 
 	system("cls");
 
 	ImprimirMapa();
 
 	cout << "Paises limitrofes suyos: " << endl << endl;
-	cVecinos = vecinos->ListarParaAtacar(nombre);//hay que hacer una nueva funcion en la lista por la cual te muestre los paises vecinos tuyos
-												//y que  muestre el nombre y las tropas que tiene.
+	cVecinos = vecinos->ListarVecinosTuyos(jugador);
+	
 	if (cVecinos == 0)
 	{
 		SetConsoleTextAttribute(consoleHandle, FSCTL_GET_INTEGRITY_INFORMATION);
@@ -62,11 +64,39 @@ int cPais::MoverTropa()
 		SetConsoleTextAttribute(consoleHandle, 7);
 
 		system("Pause");
-		return(0);
 	}
+	else
+	{
+		cout << endl << "-Elija el pais el cual quiere pasarle alguna tropa, de contrario ponga 0-" << endl;
+		cout << "Pais: ";
+		cin >> paisT;
+
+		if (paisT > 0 && paisT <= cVecinos)
+		{
+			pais = vecinos->getVecinoTuyo(jugador, paisT - 1);
+
+			PrintTropas();
+
+			cout << endl << "Cual tropa desea pasar a " << pais->getCodigo() << endl;
+			cout << "Tropa: ";
+			cin >> TropaApasar;
+
+			if (TropaApasar > 0 && TropaApasar <= TropasEnPais->getCA())
+			{
+				pais->AgregarTropaPais(TropasEnPais->QuitarenPos(TropaApasar - 1));
+			}
+			else
+			{
+				SetConsoleTextAttribute(consoleHandle, FSCTL_GET_INTEGRITY_INFORMATION);
+				cout << "***No existe la tropa***" << endl << endl;
+				SetConsoleTextAttribute(consoleHandle, 7);
+
+				system("Pause");
+			}
 
 
-
+		}
+	}
 	
 }
 
@@ -639,6 +669,12 @@ void cPais::PrintTropas()
 void cPais::printTodos()
 {
 	listaPaises->Listar();
+}
+
+void cPais::PrintPaisConTropas(void)
+{
+	cout << nombre << endl;
+	PrintTropas();
 }
 
 void cPais::ImprimirMapa(void)
