@@ -25,6 +25,9 @@ class cPais
 	cLista<cPais> * vecinos;
 	static HANDLE consoleHandle;
 
+	cTropa * buscarTROPA(string clase, int Num);
+	void titulo(cPais * paisParaATACAR, int estado, string nombre, int jugador, HANDLE consoleHandle);
+
 public:
 	
 	cPais();
@@ -42,6 +45,7 @@ public:
 	int Atacado(int ntropa, int dano, string claseTAtacante);  //Recibo Ataque
 	int AtacadoPorMagos(string Natacante, int dano);
 	int ContrataqueDeCaballeros(cTropa * ptr, int Ntropa);
+	void combinarTROPA(cTropa *ptr, int Nt, string clase);
 
 	int getNjugador() { return jugador; }
 	const string getCodigo() { return nombre; }
@@ -52,12 +56,15 @@ public:
 	
 	void PrintA(); // mostrar nombre de paises
 	void PrintTropas();//funcion de prueba
-	void printTodos();//funcion de prueba
-		
+	void printTodos();//funcion de prueba	
+	
+	void PrintTropasCaballero();
+	void PrintTropasArquero();
+	void PrintTropasMago();
 	void PrintPaisConTropas(void);
 	void ImprimirMapa(void);
 	void PrintNombre();
-	void titulo(cPais * paisParaATACAR, int estado, string nombre, int jugador, HANDLE consoleHandle);
+	
 	~cPais();
 };
 

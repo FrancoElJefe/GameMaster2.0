@@ -17,10 +17,10 @@ cJugador::cJugador(string nomb) : cJugador()
 
 void cJugador::setTropaEnPais(int Turno)
 {
-	unsigned int opc = 0, EleccionDePais = 0;
-	int opc3=0, Tropas,check=0;
-	unsigned int opc2;
-	cPais * pais;
+	unsigned int opc = 0, EleccionDePais = 0, combinacion = 0, opc2=0;
+	int Tropas=0,check=0;
+	cPais * pais  = NULL;
+	string CTropa = "";
 	int variabaleControl = 10;
 
 	
@@ -79,8 +79,118 @@ void cJugador::setTropaEnPais(int Turno)
 
 					if (opc2 > 0 && opc2 <= listaDeTropas->getCA())
 					{
-						pais->AgregarTropaPais(listaDeTropas->QuitarenPos(opc2 - 1));
-						opc = 1;
+
+						cTropaCaballero * tropaC = dynamic_cast<cTropaCaballero*>(listaDeTropas->getItem(opc2-1));
+						if (tropaC != NULL && pais->getCantTcaballero() >= 1)
+						{
+							cout << "Quiere combinar tropas, escriba si o no:";
+							cin >> CTropa;
+
+							if (CTropa == "si")
+							{
+								pais->PrintTropasCaballero();
+								cout << endl << "Tropa a combinar:";
+								cin.clear();
+								cin >> combinacion;
+
+								if (combinacion == 0)getchar();
+
+								if (opc2 - 1 < pais->getCantTcaballero() && combinacion <= pais->getCantTcaballero() && combinacion != 0) {
+
+									pais->combinarTROPA(listaDeTropas->QuitarenPos(opc2 - 1), combinacion - 1, "CABALLERO");
+									cout << endl;
+									cout << pais->getCodigo();
+									cout << endl;
+									pais->PrintTropas();
+									opc = 1;
+									system("pause");
+								}							
+
+							}
+							else
+							{
+								pais->AgregarTropaPais(listaDeTropas->QuitarenPos(opc2 - 1));
+								opc = 1;
+							}
+						}
+						else
+						{
+							cTropaArquero * tropaA = dynamic_cast<cTropaArquero*>(listaDeTropas->getItem(opc2-1));
+							if (tropaA != NULL && pais->getCantTarquro() >= 1)
+							{
+								cout << "Quiere combinar tropas, escriba si o no:";
+								cin >> CTropa;
+
+								if (CTropa == "si")
+								{
+									pais->PrintTropasCaballero();
+									cout << "Tropa a combinar:";
+									cin.clear();
+									cin >> combinacion;
+
+									if (combinacion == 0)getchar();
+
+									if (opc2 - 1 < pais->getCantTcaballero() && combinacion <= pais->getCantTcaballero() && combinacion != 0) {
+
+										pais->combinarTROPA(listaDeTropas->QuitarenPos(opc2 - 1), combinacion - 1, "ARQUERO");
+										cout << endl;
+										cout << pais->getCodigo();
+										cout << endl;
+										pais->PrintTropas();
+										opc = 1;
+										system("pause");
+									}
+
+								}
+								else
+								{
+									pais->AgregarTropaPais(listaDeTropas->QuitarenPos(opc2 - 1));
+									opc = 1;
+								}
+							}
+							else
+							{
+								cTropaMago * tropaM = dynamic_cast<cTropaMago*>(listaDeTropas->getItem(opc2-1));
+								if (tropaM != NULL && pais->getCantTMago() >= 1)
+								{
+									cout << "Quiere combinar tropas, escriba si o no:";
+									cin >> CTropa;
+
+									if (CTropa == "si")
+									{
+										pais->PrintTropasCaballero();
+										cout << "Tropa a combinar:";
+										cin.clear();
+										cin >> combinacion;
+
+										if (combinacion == 0)getchar();
+
+										if (opc2 - 1 < pais->getCantTcaballero() && combinacion <= pais->getCantTcaballero() && combinacion != 0) {
+
+											pais->combinarTROPA(listaDeTropas->QuitarenPos(opc2 - 1), combinacion - 1, "MAGO");
+											cout << endl;
+											cout << pais->getCodigo();
+											cout << endl;
+											pais->PrintTropas();
+											opc = 1;
+											system("pause");
+										}
+
+									}
+									else
+									{
+										pais->AgregarTropaPais(listaDeTropas->QuitarenPos(opc2 - 1));
+										opc = 1;
+									}
+								}
+								else
+								{
+									pais->AgregarTropaPais(listaDeTropas->QuitarenPos(opc2 - 1));
+									opc = 1;
+								}
+							}
+							
+						}						
 					}			
 
 				} while (opc != 1);

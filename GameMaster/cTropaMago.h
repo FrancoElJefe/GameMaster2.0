@@ -26,8 +26,8 @@ public:
 	int RecibirAtaqueTropa(int dano, string clase);
 
 	string getNombre() { return getNombreC(); }//funcion del padre
-
 	static string getNombreC() { return nombre; }
+	int getCUnidades() { return listaUnidades->getCA(); }
 
 	void PrintA();//funcion de prueba
 

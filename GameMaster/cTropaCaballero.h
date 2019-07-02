@@ -27,6 +27,7 @@ public:
 
 	string getNombre() { return getNombreC(); }
 	static string getNombreC() { return nombre; }
+	int getCUnidades() { return listaUnidades->getCA(); }
 
 
 	void PrintA();//funcion de prueba

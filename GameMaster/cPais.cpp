@@ -601,6 +601,38 @@ int cPais::ContrataqueDeCaballeros(cTropa * ptr, int Ntropa)
 
 }
 
+void cPais::combinarTROPA(cTropa * ptr, int Nt, string clase)
+{
+	int unidades = 0;
+	cTropa * tropaAcombinar = NULL;
+
+	cTropaCaballero * tropaC = dynamic_cast<cTropaCaballero*>(ptr);
+	if (tropaC != NULL)
+	{
+		tropaAcombinar = buscarTROPA(clase, Nt);		
+		tropaAcombinar->AgregarUnidades(tropaC->getCUnidades());
+	}
+	else
+	{
+		cTropaArquero * tropaA = dynamic_cast<cTropaArquero*>(ptr);
+		if (tropaA != NULL)
+		{
+			tropaAcombinar = buscarTROPA(clase, Nt);
+			tropaAcombinar->AgregarUnidades(tropaA->getCUnidades());
+		}
+		else
+		{
+			cTropaMago * tropaM = dynamic_cast<cTropaMago*>(ptr);
+			if (tropaM != NULL)
+			{
+				tropaAcombinar = buscarTROPA(clase, Nt);
+				tropaAcombinar->AgregarUnidades(tropaM->getCUnidades());				
+			}
+		}
+	}
+	delete ptr;
+}
+
 int cPais::getCantTcaballero()
 {
 	int cont = 0, N = 0;
@@ -669,6 +701,101 @@ void cPais::PrintTropas()
 void cPais::printTodos()
 {
 	listaPaises->Listar();
+}
+
+cTropa * cPais::buscarTROPA(string clase, int Num)
+{
+	int cant = 0, contador = 0;
+	cant = TropasEnPais->getCA();
+
+	if (clase == "CABALLERO")
+	{
+		for (int i = 0; i < cant; i++)
+		{
+			cTropaCaballero* tropa = dynamic_cast<cTropaCaballero*>(TropasEnPais->getItem(i));
+			if (tropa != NULL)
+			{
+				if (Num == contador)
+				{
+					return(tropa);
+				}
+				contador++;
+			}
+		}
+
+	}
+	else if (clase == "ARQUERO")
+	{
+		for (int i = 0; i < cant; i++)
+		{
+			cTropaArquero* tropa = dynamic_cast<cTropaArquero*>(TropasEnPais->getItem(i));
+			if (tropa != NULL)
+			{
+				if (Num == contador)
+				{
+					return(tropa);
+				}
+				contador++;
+			}
+		}
+	}
+	else
+	{
+		for (int i = 0; i < cant; i++)
+		{
+			cTropaMago* tropa = dynamic_cast<cTropaMago*>(TropasEnPais->getItem(i));
+			if (tropa != NULL)
+			{
+				if (Num == contador)
+				{
+					return(tropa);
+				}
+				contador++;
+			}
+		}
+	}
+}
+
+void cPais::PrintTropasCaballero()
+{
+	int contador = 1;
+	for (int i = 0; i < TropasEnPais->getCA(); i++)
+	{
+		cTropaCaballero * tropaC = dynamic_cast<cTropaCaballero*>(TropasEnPais->getItem(i));
+		if (tropaC != NULL)
+		{
+			cout << contador++ << ") ";
+			tropaC->PrintA();
+		}
+	}
+}
+
+void cPais::PrintTropasArquero()
+{
+	int contador = 1;
+	for (int i = 0; i < TropasEnPais->getCA(); i++)
+	{
+		cTropaArquero * tropa = dynamic_cast<cTropaArquero*>(TropasEnPais->getItem(i));
+		if (tropa != NULL)
+		{
+			cout << contador++ << ") ";
+			tropa->PrintA();
+		}
+	}
+}
+
+void cPais::PrintTropasMago()
+{
+	int contador = 1;
+	for (int i = 0; i < TropasEnPais->getCA(); i++)
+	{
+		cTropaMago * tropa = dynamic_cast<cTropaMago*>(TropasEnPais->getItem(i));
+		if (tropa != NULL)
+		{
+			cout << contador++ << ") ";
+			tropa->PrintA();
+		}
+	}
 }
 
 void cPais::PrintPaisConTropas(void)
