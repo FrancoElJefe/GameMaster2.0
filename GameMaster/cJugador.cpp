@@ -88,6 +88,7 @@ void cJugador::setTropaEnPais(int Turno)
 
 							if (CTropa == "si")
 							{
+								cout << endl;
 								pais->PrintTropasCaballero();
 								cout << endl << "Tropa a combinar:";
 								cin.clear();
@@ -95,15 +96,11 @@ void cJugador::setTropaEnPais(int Turno)
 
 								if (combinacion == 0)getchar();
 
-								if (opc2 - 1 < pais->getCantTcaballero() && combinacion <= pais->getCantTcaballero() && combinacion != 0) {
+								if (opc2 - 1 <= pais->getCantTcaballero() && combinacion <= pais->getCantTcaballero() && combinacion != 0) {
 
 									pais->combinarTROPA(listaDeTropas->QuitarenPos(opc2 - 1), combinacion - 1, "CABALLERO");
 									cout << endl;
-									cout << pais->getCodigo();
-									cout << endl;
-									pais->PrintTropas();
-									opc = 1;
-									system("pause");
+									opc = 1;									
 								}							
 
 							}
@@ -123,22 +120,19 @@ void cJugador::setTropaEnPais(int Turno)
 
 								if (CTropa == "si")
 								{
-									pais->PrintTropasCaballero();
+									cout << endl;
+									pais->PrintTropasArquero();
 									cout << "Tropa a combinar:";
 									cin.clear();
 									cin >> combinacion;
 
 									if (combinacion == 0)getchar();
 
-									if (opc2 - 1 < pais->getCantTcaballero() && combinacion <= pais->getCantTcaballero() && combinacion != 0) {
+									if (opc2 - 1 <= pais->getCantTarquro() && combinacion <= pais->getCantTarquro() && combinacion != 0) {
 
 										pais->combinarTROPA(listaDeTropas->QuitarenPos(opc2 - 1), combinacion - 1, "ARQUERO");
 										cout << endl;
-										cout << pais->getCodigo();
-										cout << endl;
-										pais->PrintTropas();
 										opc = 1;
-										system("pause");
 									}
 
 								}
@@ -158,22 +152,19 @@ void cJugador::setTropaEnPais(int Turno)
 
 									if (CTropa == "si")
 									{
-										pais->PrintTropasCaballero();
+										cout << endl;
+										pais->PrintTropasMago();
 										cout << "Tropa a combinar:";
 										cin.clear();
 										cin >> combinacion;
 
 										if (combinacion == 0)getchar();
 
-										if (opc2 - 1 < pais->getCantTcaballero() && combinacion <= pais->getCantTcaballero() && combinacion != 0) {
+										if (opc2 - 1 <= pais->getCantTMago() && combinacion <= pais->getCantTMago() && combinacion != 0) {
 
 											pais->combinarTROPA(listaDeTropas->QuitarenPos(opc2 - 1), combinacion - 1, "MAGO");
 											cout << endl;
-											cout << pais->getCodigo();
-											cout << endl;
-											pais->PrintTropas();
 											opc = 1;
-											system("pause");
 										}
 
 									}
