@@ -11,10 +11,10 @@ int main(void) {
 	cJuego * GameMaster = new cJuego;
 	int rondas = 0;
 
-	GameMaster->Inicio();
+	GameMaster->inicioPrueba();
 	do
 	{
-		GameMaster->FaseDeAsignacion();
+		//GameMaster->FaseDeAsignacion();
 
 		GameMaster->FaseDeAtaque();
 		

@@ -814,7 +814,7 @@ void cJuego::FaseDeAtaque()
 				}
 				else if (nombrePais != "0")
 				{
-					Jugador1->AgregarPais(America->BuscarPais(nombrePais));
+					Jugador1->AgregarPais(Jugador2->quitarPais(nombrePais));					
 				}
 			}
 			else
@@ -846,7 +846,8 @@ void cJuego::FaseDeAtaque()
 				}
 				else if (nombrePais != "0")
 				{
-					Jugador2->AgregarPais(America->BuscarPais(nombrePais));
+					Jugador2->AgregarPais(Jugador1->quitarPais(nombrePais));
+					
 				}
 			}
 			else

@@ -330,7 +330,7 @@ string cPais::AtacarOtroPais(string nomb)
 							if (eliminar == 1)
 							{
 								TropasEnPais->Eliminar(clase_tuya - 1);
-								i = PaisParaAtacar->getCantTcaballero();
+								break;
 							}
 						}
 

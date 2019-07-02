@@ -253,9 +253,11 @@ void cJugador::ImprimirMapa()
 {
 	cPais * pais = NULL;
 	string NomPaises[16] = { "Argentina", "Chile", "Uruguay" , "Brasil", "Peru", "Colombia", "Mexico", "California", "Oregon" , "Alaska", "Yukon", "Canada", "Nueva York", "Terranova", "Labrador", "Groenlandia" };
-	int Npais[16] = {0};
+	int Npais[16] = {0}, cantPaises = 0;
 
-	for (int i = 0; i < 8; i++)
+	cantPaises = listaPropiaPaises->getCA();
+
+	for (int i = 0; i < cantPaises; i++)
 	{
 		pais = listaPropiaPaises->getItem(i);
 		for (int k = 0; k < 16; k++)
