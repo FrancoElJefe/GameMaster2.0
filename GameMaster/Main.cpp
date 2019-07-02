@@ -9,14 +9,18 @@
 int main(void) {
 		
 	cJuego * GameMaster = new cJuego;
+	int rondas = 0;
 
-	GameMaster->inicioPrueba();
+	GameMaster->Inicio();
+	do
+	{
+		GameMaster->FaseDeAsignacion();
 
-	//GameMaster->FaseDeAsignacion();
+		GameMaster->FaseDeAtaque();
+		
+		rondas = GameMaster->FaseDeMovimiento();
 
-	//GameMaster->FaseDeAtaque();
-	
-	GameMaster->FaseDeMovimiento();
+	} while (rondas > 0);	
 
 	GameMaster->Resultados();
 	

@@ -9,6 +9,7 @@ cJuego::cJuego()
 	TropasJugador1[10] = {0};
 	TropasJugador2[10] = {0};
 	NrTropa = 0;
+	Turnos = 0;
 	Tcaballeros1 = 0;
 	Tmagos1 = 0;
 	Tarqueros1 = 0;
@@ -298,12 +299,12 @@ void cJuego::EleccionDeUnidades(cJugador * jugadorX)
 
 	if (jugadorX->getNombre() == "Jugador 1")
 	{
-		AgruparUnidadesEnTropas(jugadorX, Tcaballeros1, Tarqueros1, Tmagos1, caballeros, arqueros, magos);
+		AgruparUnidadesEnTropas(jugadorX,caballeros, arqueros, magos);
 		GeneradorDeTropasParaJugador(jugadorX, Tcaballeros1, Tarqueros1, Tmagos1);
 	}
 	else
 	{
-		AgruparUnidadesEnTropas(jugadorX, Tcaballeros2, Tarqueros2, Tmagos2, caballeros, arqueros, magos);
+		AgruparUnidadesEnTropas(jugadorX, caballeros, arqueros, magos);
 		GeneradorDeTropasParaJugador(jugadorX, Tcaballeros2, Tarqueros2, Tmagos2);
 	}
 
@@ -314,7 +315,7 @@ void cJuego::EleccionDeUnidades(cJugador * jugadorX)
 
 void cJuego::GeneradorDeTropasParaJugador(cJugador * jugadorX, int Tcaballeros, int Tarqueros, int Tmagos)
 {
-	int Tropas[10];
+	int Tropas[10] = {0};
 	cout << endl;
 
 	if (jugadorX->getNombre() == "Jugador 1")
@@ -410,7 +411,7 @@ void cJuego::ModoDeJuego(void)
 				Rondas = 0;
 				check = 1;
 			}
-			else if (Rondas != 0 && Rondas > 0)
+			else if (Rondas > 0)
 			{
 				IteradorDeRondas = 1;
 			}
@@ -422,9 +423,9 @@ void cJuego::ModoDeJuego(void)
 
 }
 
-void cJuego::AgruparUnidadesEnTropas(cJugador * jugadorX, int Tcaballeros, int Tarqueros, int Tmagos, int caballerox, int arquerox, int magox)
+void cJuego::AgruparUnidadesEnTropas(cJugador * jugadorX, int caballerox, int arquerox, int magox)
 {
-	int numero = 0, Tropas[10] = {0}, MaxUnidades = 0, aux = 0, opcion= 0;
+	int numero = 0, Tropas[10] = {0}, MaxUnidades = 0, aux = 0, opcion= 0, Tcaballeros=0, Tarqueros=0, Tmagos=0;
 
 	MaxUnidades = caballerox;
 	aux = arquerox;
@@ -598,8 +599,8 @@ void cJuego::AgruparUnidadesEnTropas(cJugador * jugadorX, int Tcaballeros, int T
 
 void cJuego::AgregarTropasEnPais()
 {
-	Jugador1->setTropaEnPais();
-	Jugador2->setTropaEnPais();
+	Jugador1->setTropaEnPais(Turnos);
+	Jugador2->setTropaEnPais(Turnos);
 }
 
 void cJuego::ReglasDelJuego(void)
@@ -787,7 +788,9 @@ void cJuego::inicioPrueba(void)
 
 void cJuego::FaseDeAsignacion()
 {
+	if (Turnos != 0)cambio_de_ronda();	
 	AgregarTropasEnPais();
+	Turnos++;
 }
 
 void cJuego::FaseDeAtaque()
@@ -862,11 +865,15 @@ void cJuego::FaseDeAtaque()
 	   	  
 }
 
-void cJuego::FaseDeMovimiento()//***********el jugador puede reorganizar sus tropas**************/
+int cJuego::FaseDeMovimiento()//***********el jugador puede reorganizar sus tropas**************/
 {	
 	Jugador1->MenuFaseDeMovimiento();
 
 	Jugador2->MenuFaseDeMovimiento();
+
+	if (IteradorDeRondas == 1)Rondas--;
+
+	return(Rondas);
 }
 
 void cJuego::cambio_de_ronda()
@@ -920,18 +927,17 @@ void cJuego::cambio_de_ronda()
 				}
 
 			}
-
-			AgregarTropasEnPais();
+						
 		}
 		else
 		{
-			Turnos = 1;
+			Rondas = 0;
 		}
 
 	}
 	else
 	{
-		Turnos = 1;
+		Rondas = 0;
 	}
 
 

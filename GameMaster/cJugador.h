@@ -24,7 +24,7 @@ public:
 	cJugador(string nomb);
 
 	
-	void setTropaEnPais(void);
+	void setTropaEnPais(int Turno);
 	void agregarTropas(cTropa * ptr, int n);
 	int AgregarPais(cPais *ptr);
 	cPais* quitarPais(string pais);

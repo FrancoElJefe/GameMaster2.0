@@ -15,7 +15,7 @@ cJugador::cJugador(string nomb) : cJugador()
 	nombre = nomb;
 }
 
-void cJugador::setTropaEnPais(void)
+void cJugador::setTropaEnPais(int Turno)
 {
 	unsigned int opc = 0, EleccionDePais = 0;
 	int opc3=0, Tropas,check=0;
@@ -23,15 +23,16 @@ void cJugador::setTropaEnPais(void)
 	cPais * pais;
 	int variabaleControl = 10;
 
-	//agrego de forma random tropas a los paises
-
-	for (int i = 0; i < 8; i++)
+	
+	if (Turno == 0)
 	{
-		pais = listaPropiaPaises->getItem(i);
-		pais->AgregarTropaPais(listaDeTropas->QuitarenPos(rand() % variabaleControl));
-		variabaleControl--;
-	}
-		
+		for (int i = 0; i < 8; i++)//agrego de forma random tropas a los paises
+		{
+			pais = listaPropiaPaises->getItem(i);
+			pais->AgregarTropaPais(listaDeTropas->QuitarenPos(rand() % variabaleControl));
+			variabaleControl--;
+		}
+	}		
 
 	Tropas = listaDeTropas->getCA();
 	do
@@ -76,7 +77,7 @@ void cJugador::setTropaEnPais(void)
 					cin >> opc2;
 					if (opc2 == 0)getchar();
 
-					if (opc2 > 0 && opc2 <= pais->getCantidadDeTropas())
+					if (opc2 > 0 && opc2 <= listaDeTropas->getCA())
 					{
 						pais->AgregarTropaPais(listaDeTropas->QuitarenPos(opc2 - 1));
 						opc = 1;

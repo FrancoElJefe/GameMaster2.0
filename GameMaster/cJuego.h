@@ -37,7 +37,7 @@ class cJuego
 	int IteradorDeRondas;
 
 	void EleccionDeUnidades(cJugador * jugadorX); //el jugador elecciona 50 unidades constituedas por las tres facciones 
-	void AgruparUnidadesEnTropas(cJugador * jugadorX, int Tcaballeros, int Tarqueros, int Tmagos, int caballerox, int arquerox, int magox); // el jugador agrupa sus unidades en 10 tropas
+	void AgruparUnidadesEnTropas(cJugador * jugadorX, int caballerox, int arquerox, int magox); // el jugador agrupa sus unidades en 10 tropas
 	void GeneradorDeTropasParaJugador(cJugador * jugadorX, int Tcaballeros, int Tarqueros, int Tmagos); // se generan las tropas y se las da al jugador
 	void CrearContinenteConPaises();
 	void AsignarVecinos(); // esta funcion asigna los vecinos a los distintos paises
@@ -59,7 +59,7 @@ public:
 
 	void FaseDeAtaque();
 
-	void FaseDeMovimiento();
+	int FaseDeMovimiento();
 	
 	void Resultados();	
 
