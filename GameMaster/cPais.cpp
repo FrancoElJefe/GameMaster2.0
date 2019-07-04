@@ -262,6 +262,8 @@ string cPais::AtacarOtroPais(string nomb)
 						}
 					}
 
+					PaisParaAtacar->ContrataqueDeCaballeros(TropaTuya, clase_slc-1);
+
 					system("pause");
 					
 					estado = ConquistasteElPais;
@@ -576,14 +578,14 @@ int cPais::ContrataqueDeCaballeros(cTropa * ptr, int Ntropa)
 	int Eliminar = 0;
 	cTropaCaballero * miTropa = NULL;
 		 
-	 miTropa = dynamic_cast<cTropaCaballero*>(TropasEnPais->getItem(Ntropa));
+	 miTropa = dynamic_cast<cTropaCaballero*>(TropasEnPais->getItem(Ntropa));//busca la tropa de caballeros la cual atacaste
 	 if (miTropa != NULL)
 	 {
 		 SetConsoleTextAttribute(consoleHandle, 14);
 
 		 cout << endl << "\t-----------ContraAtaque---------------" << endl;
 		 cout << "\tTu Tropa " << Ntropa + 1 << ": ";
-		 Eliminar = ptr->RecibirAtaqueTropa(miTropa->Ataque() + miTropa->Ataque()*0.25, "CABALLERO");
+		 Eliminar = ptr->RecibirAtaqueTropa(miTropa->Ataque()+miTropa->Ataque()*0.25, "CABALLERO");
 
 		 if (Eliminar == 0)
 		 {

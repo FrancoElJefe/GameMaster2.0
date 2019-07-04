@@ -566,6 +566,23 @@ void cJuego::AgruparUnidadesEnTropas(cJugador * jugadorX, int caballerox, int ar
 			system("pause");
 			system("cls");
 		}
+		else
+		{
+			if (caballerox != 0 || arquerox  != 0 || magox != 0)
+			{
+				cout << endl << endl;
+				SetConsoleTextAttribute(consoleHandle, FSCTL_GET_INTEGRITY_INFORMATION);
+				cout << "Se debe tener 10 tropas, reingrese";
+				SetConsoleTextAttribute(consoleHandle, 7);
+				cout << endl << endl;
+				Tcaballeros = 0;
+				Tarqueros = 0;
+				NrTropa = 0;
+				Tmagos = 0;
+				system("pause");
+				system("cls");
+			}
+		}
 
 	} while (NrTropa != 10);
 

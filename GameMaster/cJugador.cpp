@@ -83,12 +83,16 @@ void cJugador::setTropaEnPais(int Turno)
 						cTropaCaballero * tropaC = dynamic_cast<cTropaCaballero*>(listaDeTropas->getItem(opc2-1));
 						if (tropaC != NULL && pais->getCantTcaballero() >= 1)
 						{
-							cout << "Quiere combinar tropas, escriba si o no:";
+							cout << endl << "-Quiere combinar tropas, escriba si o no:";
 							cin >> CTropa;
 
 							if (CTropa == "si")
 							{
-								cout << endl;
+								cout << endl << "Tropas de";
+								SetConsoleTextAttribute(consoleHandle, FOREGROUND_BLUE);
+								cout << " Caballeros";
+								SetConsoleTextAttribute(consoleHandle, 7);
+								cout <<  "en " << pais->getCodigo() << ":" << endl <<  endl;
 								pais->PrintTropasCaballero();
 								cout << endl << "Tropa a combinar:";
 								cin.clear();
@@ -115,14 +119,18 @@ void cJugador::setTropaEnPais(int Turno)
 							cTropaArquero * tropaA = dynamic_cast<cTropaArquero*>(listaDeTropas->getItem(opc2-1));
 							if (tropaA != NULL && pais->getCantTarquro() >= 1)
 							{
-								cout << "Quiere combinar tropas, escriba si o no:";
+								cout << endl << "-Quiere combinar tropas, escriba si o no:";
 								cin >> CTropa;
 
 								if (CTropa == "si")
 								{
-									cout << endl;
+									cout << endl << "Tropas de";
+									SetConsoleTextAttribute(consoleHandle, FOREGROUND_GREEN);
+									cout << " Arqueros";
+									SetConsoleTextAttribute(consoleHandle, 7);
+									cout << " en " << pais->getCodigo() << ":" << endl << endl;
 									pais->PrintTropasArquero();
-									cout << "Tropa a combinar:";
+									cout << endl << "Tropa a combinar:";
 									cin.clear();
 									cin >> combinacion;
 
@@ -147,14 +155,18 @@ void cJugador::setTropaEnPais(int Turno)
 								cTropaMago * tropaM = dynamic_cast<cTropaMago*>(listaDeTropas->getItem(opc2-1));
 								if (tropaM != NULL && pais->getCantTMago() >= 1)
 								{
-									cout << "Quiere combinar tropas, escriba si o no:";
+									cout<< endl << "-Quiere combinar tropas, escriba si o no:";
 									cin >> CTropa;
 
 									if (CTropa == "si")
 									{
-										cout << endl;
+										cout << endl << "Tropas de";
+										SetConsoleTextAttribute(consoleHandle, FOREGROUND_RED);
+										cout << "  Magos";
+										SetConsoleTextAttribute(consoleHandle, 7);
+										cout << " en " << pais->getCodigo() << ":" << endl << endl;
 										pais->PrintTropasMago();
-										cout << "Tropa a combinar:";
+										cout << endl << "Tropa a combinar:";
 										cin.clear();
 										cin >> combinacion;
 
@@ -163,7 +175,6 @@ void cJugador::setTropaEnPais(int Turno)
 										if (opc2 - 1 <= pais->getCantTMago() && combinacion <= pais->getCantTMago() && combinacion != 0) {
 
 											pais->combinarTROPA(listaDeTropas->QuitarenPos(opc2 - 1), combinacion - 1, "MAGO");
-											cout << endl;
 											opc = 1;
 										}
 
@@ -190,9 +201,9 @@ void cJugador::setTropaEnPais(int Turno)
 				opc = 0;
 
 				cout << endl;
-				cout << pais->getCodigo();
-				cout << endl;
+				cout << "-" << pais->getCodigo() << ":" << endl << endl;
 				pais->PrintTropas();
+				cout << endl;
 				system("pause");
 				Tropas--;
 			}
