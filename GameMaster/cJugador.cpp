@@ -226,6 +226,11 @@ cPais* cJugador::quitarPais(string pais)
 	return listaPropiaPaises->Quitar(pais);
 }
 
+cPais * cJugador::operator-(string Pais)
+{
+	return listaPropiaPaises->Quitar(pais);
+}
+
 cPais * cJugador::MenuAtacarPais()
 {
 	int opcion = 0,check = 0;

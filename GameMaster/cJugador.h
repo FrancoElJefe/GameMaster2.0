@@ -28,6 +28,7 @@ public:
 	void agregarTropas(cTropa * ptr, int n);
 	int AgregarPais(cPais *ptr);
 	cPais* quitarPais(string pais);
+	cPais* operator-(string Pais);
 		
 	cPais* MenuAtacarPais();
 	
