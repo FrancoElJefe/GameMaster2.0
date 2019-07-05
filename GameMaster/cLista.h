@@ -40,6 +40,7 @@ public:
 
 	tipodato* BuscarItem(string codigo);
 	tipodato* getItem(unsigned int pos);
+	tipodato* operator=(unsigned int pos);
 	tipodato* getVecinoTuyo(string nombre, int pos);
 
 	unsigned int getItemPos(string codigo);
@@ -67,8 +68,6 @@ cLista<tipodato>::cLista(unsigned int TAM)
 
 	this->TAM = TAM;
 	CA = 0;
-
-
 }
 template<class tipodato>
 cLista<tipodato>::~cLista()
@@ -299,6 +298,13 @@ tipodato * cLista<tipodato>::getItem(unsigned int pos)
 {
 	if (pos < CA)
 		return vector[pos];
+	else return NULL;
+}
+
+template<class tipodato>
+inline tipodato * cLista<tipodato>::operator=(unsigned int pos)
+{
+	if (pos < CA)return vector[pos];
 	else return NULL;
 }
 

@@ -66,7 +66,7 @@ void cJugador::setTropaEnPais(int Turno)
 		{
 			if (EleccionDePais <= listaPropiaPaises->getCA()) {
 
-				pais = listaPropiaPaises->getItem(EleccionDePais - 1);
+				pais = *listaPropiaPaises=(EleccionDePais - 1);
 				do
 				{
 					system("cls");
