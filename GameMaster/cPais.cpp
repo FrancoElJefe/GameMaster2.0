@@ -226,6 +226,8 @@ string cPais::AtacarOtroPais(string nomb)
 							TropaTuya = mago;//se atacan a todas las tropas falta informar
 							estado = MagoContraArquero;
 						}
+						else throw new exception("No es mago, arquero ni caballero0");;
+						
 					}
 				}
 			}
@@ -435,7 +437,7 @@ int cPais::Atacado(int ntropa, int dano, string claseTAtacante)
 				if (tropaAtacada != NULL)
 				{
 					tropa = tropaAtacada;
-				}
+				}else throw new exception("No es arquero, mago ni caballero");;
 			}
 
 		}
@@ -629,7 +631,7 @@ void cPais::combinarTROPA(cTropa * ptr, int Nt, string clase)
 			{
 				tropaAcombinar = buscarTROPA(clase, Nt);
 				tropaAcombinar->AgregarUnidades(tropaM->getCUnidades());				
-			}
+			}else throw new exception("No es arquero, mago ni caballero");;
 		}
 	}
 	delete ptr;

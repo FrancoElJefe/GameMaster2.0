@@ -185,11 +185,11 @@ void cJugador::setTropaEnPais(int Turno)
 										opc = 1;
 									}
 								}
-								else
-								{
+								else throw new exception("No es arquero, mago ni caballero");;
+								/*{
 									pais->AgregarTropaPais(listaDeTropas->QuitarenPos(opc2 - 1));
 									opc = 1;
-								}
+								}*/
 							}
 							
 						}						
@@ -228,7 +228,7 @@ cPais* cJugador::quitarPais(string pais)
 
 cPais * cJugador::operator-(string Pais)
 {
-	return listaPropiaPaises->Quitar(pais);
+	return listaPropiaPaises->Quitar(Pais);
 }
 
 cPais * cJugador::MenuAtacarPais()
