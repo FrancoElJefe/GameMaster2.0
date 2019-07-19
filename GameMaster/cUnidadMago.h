@@ -17,7 +17,7 @@ public:
 	virtual int Ataque();
 	virtual int RecibirAtaque(int Dano);
 
-	int getHP() { return cClases::getHP(); }
+	int getHP() { return HP; }
 
 	~cUnidadMago();
 };

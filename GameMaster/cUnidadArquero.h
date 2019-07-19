@@ -8,7 +8,7 @@
 
 using namespace std;
 
-class cUnidadArquero : cClases
+class cUnidadArquero : public cClases
 {
 
 public:
@@ -18,7 +18,7 @@ public:
 	virtual int Ataque();
 	virtual int RecibirAtaque(int Dano);
 
-	int getHP() { return cClases::getHP(); }
+	int getHP() { return HP;}
 
 	~cUnidadArquero();
 };

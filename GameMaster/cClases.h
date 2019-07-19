@@ -9,6 +9,7 @@ using namespace std;
 
 class cClases 
 {
+protected:
 	int HP;
 	int AT;
 

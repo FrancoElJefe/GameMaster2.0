@@ -6,24 +6,22 @@ cUnidadMago::cUnidadMago() :cClases(60, 20)
 {
 }
 
-cUnidadMago::cUnidadMago(int hp, int at) : cClases(hp, at)
+cUnidadMago::cUnidadMago(int hp, int at)
 {
+	HP = hp;
+	AT = at;
 }
 
 int cUnidadMago::Ataque()
 {
-	return cClases::getAT();
+	return AT;
 }
 
 int cUnidadMago::RecibirAtaque(int Dano)
 {
-	int HP = 0;
+	setHp(HP - Dano);
 
-	HP = cClases::getHP();
-
-	cClases::setHp(HP - Dano);
-
-	return (HP - Dano);
+	return (HP);
 }
 
 

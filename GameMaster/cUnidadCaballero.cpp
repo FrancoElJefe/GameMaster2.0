@@ -6,24 +6,22 @@ cUnidadCaballero::cUnidadCaballero() :cClases(100, 40)
 {
 }
 
-cUnidadCaballero::cUnidadCaballero(int hp, int at) : cClases(hp, at)
+cUnidadCaballero::cUnidadCaballero(int hp, int at)
 {
+	HP = hp;
+	AT = at;
 }
 
 int cUnidadCaballero::Ataque()
 {
-	return cClases::getAT();
+	return AT;
 }
 
 int cUnidadCaballero::RecibirAtaque(int Dano)
 {
-	int HP = 0;
+	setHp(HP - Dano);
 
-	HP = cClases::getHP();
-
-	cClases::setHp(HP - Dano);
-
-	return (HP - Dano);
+	return (HP);
 }
 
 

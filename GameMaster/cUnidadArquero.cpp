@@ -6,24 +6,22 @@ cUnidadArquero::cUnidadArquero():cClases(80,30)
 {
 }
 
-cUnidadArquero::cUnidadArquero(int hp, int at) : cClases(hp, at)
+cUnidadArquero::cUnidadArquero(int hp, int at)
 {
+	HP = hp;
+	AT = at;
 }
 
 int cUnidadArquero::Ataque()
 {
-	return cClases::getAT();
+	return AT;
 }
 
 int cUnidadArquero::RecibirAtaque(int Dano)
 {
-	int HP = 0;
+	setHp(HP - Dano);
 
-	HP = cClases::getHP();
-
-	cClases::setHp(HP - Dano);
-
-	return (HP - Dano);
+	return (HP);
 	
 }
 
