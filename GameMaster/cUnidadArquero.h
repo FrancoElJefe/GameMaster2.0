@@ -15,8 +15,8 @@ public:
 	cUnidadArquero();
 	cUnidadArquero(int hp, int at);
 
-	virtual int Ataque();
-	virtual int RecibirAtaque(int Dano);
+	int Ataque();
+	int RecibirAtaque(int Dano);
 
 	int getHP() { return HP;}
 
