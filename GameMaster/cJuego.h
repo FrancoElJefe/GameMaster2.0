@@ -21,6 +21,7 @@ class cJuego
 {
 	cJugador * Jugador1;
 	cJugador * Jugador2;
+	string nombre;
 	cContinente * America;
 	HANDLE consoleHandle;
 	int TropasJugador1[10];
@@ -50,7 +51,7 @@ class cJuego
 
 public:
 	cJuego();
-		
+			
 	void Inicio(void);
 			
 	void inicioPrueba(void);
@@ -61,7 +62,7 @@ public:
 
 	int FaseDeMovimiento();
 	
-	void Resultados();	
+	void Resultados() const;	
 
 	~cJuego();
 };

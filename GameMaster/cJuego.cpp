@@ -19,7 +19,6 @@ cJuego::cJuego()
 	Rondas = 0;
 	srand(time(NULL));
 	consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-
 }
 
 void cJuego::CrearContinenteConPaises()
@@ -962,7 +961,7 @@ void cJuego::cambio_de_ronda()
 
 }
 
-void cJuego::Resultados()
+void cJuego::Resultados() const
 {
 	system("cls");
 
